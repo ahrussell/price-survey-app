@@ -1,1 +1,0 @@
-# price-survey-app
