@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #9E1A76;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        header img {
+            max-height: 40px;
+            vertical-align: middle;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .highlight-red {
+            color: red;
+            font-weight: bold;
+        }
+        .highlight-green {
+            color: green;
+            font-weight: bold;
+        }
+        .highlight-purple {
+            color: #9E1A76;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="Logo" />
+</header>
+
+<div class="container">
+    <h2>Price Report</h2>
+    <ul id="report"></ul>
+    <a href="index.html" class="back-button">Back to Product List</a>
+</div>
+
+<script>
+    // Extract parameters from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = decodeURIComponent(urlParams.get('product')) || 'Unknown product';
+    const wholesalePrice = parseFloat(urlParams.get('wholesale_price')) || 0;
+    const retailPrice = parseFloat(urlParams.get('retail_price')) || 0;
+
+    function formatDiff(diff, isWholesale) {
+        const className = (isWholesale ? diff > 0 : diff <= 0) ? 'highlight-red' : 'highlight-green';
+        return `<span class="${className}">${Math.abs(diff)}Ksh</span>`;
+    }
+
+    function generateReport() {
+        const reportList = document.getElementById('report');
+        let reportItems = [];
+
+        if (product.startsWith('DAP')) {
+            const diffWholesale = wholesalePrice - 5150;
+            const diffRetail = retailPrice - 5450;
+
+            reportItems.push(
+                `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Apollo Agriculture</span> for <span class="highlight-purple">5150Ksh</span>.`
+            );
+            reportItems.push(
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Tuga-Tai Agrovet</span> for <span class="highlight-purple">5450Ksh</span>.`
+            );
+        } else if (product.startsWith('CAN')) {
+            const diffWholesale = wholesalePrice - 3150;
+            const diffRetail = retailPrice - 3550;
+
+            reportItems.push(
+                `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Muguri Agri Supplies</span> for <span class="highlight-purple">3150Ksh</span>.`
+            );
+            reportItems.push(
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Kimilili Agrovet</span> for <span class="highlight-purple">3550Ksh</span>.`
+            );
+        } else if (product.startsWith('H6213')) {
+            const diffWholesale = wholesalePrice - 600;
+            const diffRetail = retailPrice - 730;
+
+            reportItems.push(
+                `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Kenya Seed Co</span> for <span class="highlight-purple">600Ksh</span>.`
+            );
+            reportItems.push(
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Kimilili Agrovet</span> for <span class="highlight-purple">730Ksh</span>.`
+            );
+        } else {
+            reportItems.push('Product not recognized. Please ensure you entered a valid product.');
+        }
+
+        // Populate the report list
+        reportItems.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = item;
+            reportList.appendChild(li);
+        });
+    }
+
+    generateReport();
+</script>
+</body>
+</html>

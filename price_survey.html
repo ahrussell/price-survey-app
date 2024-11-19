@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Survey Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #9E1A76;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        header img {
+            max-height: 40px;
+            vertical-align: middle;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="Logo" />
+</header>
+
+<div class="container">
+    <h2>Product Survey Form</h2>
+    <form id="surveyForm" action="price_report.html" method="get">
+        <div>
+            <label for="lastPurchase">When was the last time you bought <span id="productName"></span>?</label>
+            <select name="lastPurchase" id="lastPurchase">
+                <option value="Today">Today</option>
+                <option value="This Week">This Week</option>
+                <option value="Last week">Last week</option>
+                <option value="This month">This month</option>
+                <option value="Last month">Last month</option>
+                <option value="Before last month">Before last month</option>
+            </select>
+        </div>
+        <div>
+            <label for="wholesale_price">How much did you buy each bag of <span id="productNameWholesale"></span> for?</label>
+            <input type="number" name="wholesale_price" id="wholesale_price" required>
+        </div>
+        <div>
+            <label for="retail_price">How much are you currently selling <span id="productNameRetail"></span> for?</label>
+            <input type="number" name="retail_price" id="retail_price" required>
+        </div>
+        <div>
+            <label for="bags">How many bags did you buy?</label>
+            <select name="bags" id="bags">
+                <option value="1-10">1-10</option>
+                <option value="11-20">11-20</option>
+                <option value="21-30">21-30</option>
+                <option value="31-40">31-40</option>
+                <option value="40+">40+</option>
+            </select>
+        </div>
+        <div>
+            <label for="source">Where did you buy it from?</label>
+            <select name="source" id="source">
+                <option value="Muguri Agri Supplies">Muguri Agri Supplies</option>
+                <option value="Mosop Agrovet">Mosop Agrovet</option>
+                <option value="Maraba Investments">Maraba Investments</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <input type="hidden" name="product" id="product" value="">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    // Extract product from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = decodeURIComponent(urlParams.get('product')) || 'your product';
+
+    // Set product in form elements
+    document.getElementById('productName').textContent = product;
+    document.getElementById('productNameWholesale').textContent = product;
+    document.getElementById('productNameRetail').textContent = product;
+    document.getElementById('product').value = product;
+</script>
+</body>
+</html>
