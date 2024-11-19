@@ -93,17 +93,17 @@
                 `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Apollo Agriculture</span> for <span class="highlight-purple">5150Ksh</span>.`
             );
             reportItems.push(
-                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Tuga-Tai Agrovet</span> for <span class="highlight-purple">5450Ksh</span>.`
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Kilimo Agrovet</span> for <span class="highlight-purple">5450Ksh</span>.`
             );
         } else if (product.startsWith('CAN')) {
             const diffWholesale = wholesalePrice - 3150;
             const diffRetail = retailPrice - 3550;
 
             reportItems.push(
-                `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Muguri Agri Supplies</span> for <span class="highlight-purple">3150Ksh</span>.`
+                `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Maziwa Agro Supplies</span> for <span class="highlight-purple">3150Ksh</span>.`
             );
             reportItems.push(
-                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Kimilili Agrovet</span> for <span class="highlight-purple">3550Ksh</span>.`
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Green Harvest Supplies</span> for <span class="highlight-purple">3550Ksh</span>.`
             );
         } else if (product.startsWith('H6213')) {
             const diffWholesale = wholesalePrice - 600;
@@ -113,7 +113,7 @@
                 `You bought ${product} for ${formatDiff(diffWholesale, true)} ${diffWholesale > 0 ? 'more' : 'less'} than nearby retailers. The current cheapest place to buy ${product} is at <span class="highlight-purple">Kenya Seed Co</span> for <span class="highlight-purple">600Ksh</span>.`
             );
             reportItems.push(
-                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Kimilili Agrovet</span> for <span class="highlight-purple">730Ksh</span>.`
+                `You are selling ${product} for ${formatDiff(diffRetail, false)} ${diffRetail > 0 ? 'more' : 'less'} than nearby retailers. The cheapest place to buy ${product} within 100km is at <span class="highlight-purple">Baraka Agro Traders</span> for <span class="highlight-purple">730Ksh</span>.`
             );
         } else {
             reportItems.push('Product not recognized. Please ensure you entered a valid product.');
